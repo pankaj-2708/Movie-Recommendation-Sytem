@@ -55,7 +55,7 @@ A powerful and interactive **content-based movie recommender system** that sugge
    cd movie-recommendation-system
    ```
 
-**Read docs for detailed setup**
+**Read docs for detailed setup here(https://github.com/pankaj-2708/Movie-Recommendation-Sytem/blob/main/docs/docs/getting-started.md)**
 ---
 
 

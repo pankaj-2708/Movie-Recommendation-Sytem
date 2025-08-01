@@ -15,7 +15,7 @@ See `README.md` for folder structure and details.
 
 ### 1. 📥 Download Dataset
 
-- Get the dataset from [https://www.kaggle.com/datasets/pankajmaulekhi/tmdb-top-10000-movies-updated-till-2025](#).
+- Get the dataset here(https://www.kaggle.com/datasets/pankajmaulekhi/tmdb-top-10000-movies-updated-till-2025)(#).
 - Save it to `data/raw/`.
 
 ---
