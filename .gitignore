@@ -1,6 +1,5 @@
 # Ignore all .csv and .pkl files recursively
 **/*.csv
-**/*.pkl
 Dockerfile
 
 # EXCEPTIONS: Keep demo CSV and PKL files

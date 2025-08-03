@@ -64,9 +64,8 @@ def allmovies():
 
 @app.get("/story")
 def RecommendStory(movie: str):
-    index = df[df["title"] == movie.split("(")[0][:-1]].index
-    curr = similarity1[index]
-    top5 = np.argsort(curr)[0, :][::-1][1:6]
+    index = df[df["title"] == movie.split("(")[0][:-1]].index[0]
+    top5 = np.array(similarity1[index])
     similar_rows = df[df.index.isin(top5)]
 
     similar_movies = list(similar_rows["title"].values)
@@ -79,9 +78,8 @@ def RecommendStory(movie: str):
 
 @app.get("/cast")
 def Recommendcast(movie: str):
-    index = df[df["title"] == movie.split("(")[0][:-1]].index
-    curr = similarity2[index]
-    top5 = np.argsort(curr)[0, :][::-1][1:6]
+    index = df[df["title"] == movie.split("(")[0][:-1]].index[0]
+    top5 = np.array(similarity2[index])
     similar_rows = df[df.index.isin(top5)]
     similar_movies = list(similar_rows["title"].values)
     posters = list(similar_rows["poster_path"].values)
@@ -92,9 +90,8 @@ def Recommendcast(movie: str):
 
 @app.get("/scale")
 def Recommendscale(movie: str):
-    index = df[df["title"] == movie.split("(")[0][:-1]].index
-    curr = similarity3[index]
-    top5 = np.argsort(curr)[0, :][::-1][1:6]
+    index = df[df["title"] == movie.split("(")[0][:-1]].index[0]
+    top5 = np.array(similarity3[index])
     similar_rows = df[df.index.isin(top5)]
     similar_movies = list(similar_rows["title"].values)
     posters = list(similar_rows["poster_path"].values)
