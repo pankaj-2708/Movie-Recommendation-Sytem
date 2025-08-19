@@ -1,0 +1,6 @@
+# Ignore all .csv and .pkl files recursively
+Dockerfile
+data\
+
+# EXCEPTIONS: Keep demo CSV and PKL files
+!data/raw/new_movies_demo.csv

@@ -1,0 +1,28 @@
+stages:
+  cleaning:
+    cmd: python .\Movie_Recomm_System\dvc_pipeline\0_cleaning.py
+    deps:
+    - .\Movie_Recomm_System\dvc_pipeline\0_cleaning.py
+    outs:
+    - .\data\interim\
+  dataset_creation:
+    cmd: python .\Movie_Recomm_System\dvc_pipeline\1_creating_dataset.py
+    deps:
+    - .\Movie_Recomm_System\dvc_pipeline\1_creating_dataset.py
+    params:
+    - dataset.prod_comp_count
+    - dataset.keyword_count
+    - dataset.prod_country_count
+    - dataset.cast_count
+    - dataset.crew_count
+    outs:
+    - .\data\processed\
+
+  model:
+    cmd: python .\Movie_Recomm_System\dvc_pipeline\2_model.py
+    deps:
+    - .\Movie_Recomm_System\dvc_pipeline\2_model.py
+    params:
+    - model.gen_report
+    outs:
+    - .\models\

@@ -1,0 +1,8 @@
+dataset:
+  crew_count : 200
+  cast_count : 200
+  prod_country_count : 50
+  keyword_count : 100
+  prod_comp_count : 50
+model:
+  gen_report: True
