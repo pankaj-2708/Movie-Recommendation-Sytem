@@ -11,7 +11,7 @@ def load_data(data_path):
 
 
 def save_model(model, output_path):
-    with open(output_path, "rb") as f:
+    with open(output_path, "wb") as f:
         pickle.dump(model, f)
 
 
@@ -34,7 +34,7 @@ def create_report(df, output_path):
     with open(report_file, "w") as report:
         for model_file in ["story.pkl", "cast.pkl", "scale.pkl"]:
             report.write(f"--- For model: {model_file} ---\n")
-            with open(model_file, "rb") as mf:
+            with open(output_path / model_file, "rb") as mf:
                 m = pickle.load(mf)
 
             for movie in [
@@ -70,7 +70,7 @@ def main():
         scale = pickle.load(f)
     create_model(scale, output_path / "scale.pkl")
     if params["gen_report"]:
-        df = pd.read_csv(home_dir / "data" / "raw" / "Frontend.csv")
+        df = pd.read_csv(data_path / "Frontend.csv")
         create_report(df, output_path)
 
 if __name__=="__main__":

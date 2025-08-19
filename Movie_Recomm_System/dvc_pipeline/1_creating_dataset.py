@@ -70,9 +70,9 @@ def seprate(col_name, df, n=20, func=genre):
 
 
 def preprocessText(txt):
-    txt=txt.lower()
     new_txt = ""
     for i in txt:
+        i=i.lower()
         if i not in punc:
             new_txt += i
 
@@ -88,6 +88,8 @@ def preprocessText(txt):
 def create_story(df_, keyword_count, output_path):
     df = df_.copy()
     df["original_title"] = df["original_title"].apply(preprocessText)
+    df["tagline"].fillna("", inplace=True)
+    df["overview"].fillna("", inplace=True)
     df["tagline"] = df["tagline"].apply(preprocessText)
     df["overview"] = df["overview"].apply(preprocessText)
     df = seprate("genres", df)
@@ -204,7 +206,8 @@ def create_cast(
     df.to_csv(output_path / "cast.csv", index=False)
 
 
-def create_scale(df, output_path):
+def create_scale(df_, output_path):
+    df=df_.copy()
     df["budget"] = df["budget"] / 1000000
     df["revenue"] = df["revenue"] / 1000000
     df["box-off"] = df["box-off"] / 1000000
@@ -257,10 +260,25 @@ def create_scale(df, output_path):
 
     ppl = Pipeline([("std", cf)])
     X = ppl.fit_transform(df)
-    with open(output_path / "scale.pkl", "rb") as f:
+    with open(output_path / "scale.pkl", "wb") as f:
         pickle.dump(X, f)
 
+def Frontend(df_,output_path):
+    df=df_.copy()
+    df["release_date"] = pd.to_datetime(df["release_date"])
+    df["release_year"] = df["release_date"].dt.year
+    df["release_day"] = df["release_date"].dt.day_name()
+    df["release_month"] = df["release_date"].dt.month_name()
+    seprate("genres",df)
+    seprate("keywords",df, 50, keywords)
+    seprate("production_companies",df, 50)
+    seprate("production_countries",df, 50)
+    seprate("spoken_languages",df, 20)
+    seprate("cast",df, 50, genre)
+    seprate("crew",df, 50, genre)
+    df.to_csv(output_path / 'Frontend.csv',index=False)
 
+    
 def main():
     curr_path = pathlib.Path(__file__)
     home_dir = curr_path.parent.parent.parent
@@ -282,7 +300,8 @@ def main():
         params["crew_count"],
     )
     create_scale(df, output_path)
+    Frontend(df,output_path)
 
 
-if __name__ == "__main__":
+if __name__=="__main__":
     main()

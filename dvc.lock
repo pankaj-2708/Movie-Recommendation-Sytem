@@ -1,0 +1,51 @@
+schema: '2.0'
+stages:
+  cleaning:
+    cmd: python .\Movie_Recomm_System\dvc_pipeline\0_cleaning.py
+    deps:
+    - path: .\Movie_Recomm_System\dvc_pipeline\0_cleaning.py
+      hash: md5
+      md5: 45871d6059bff64d6d789724debff485
+      size: 1966
+    outs:
+    - path: .\data\interim\
+      hash: md5
+      md5: a8c484ccaa2f1edf493debe2f08a9401.dir
+      size: 604028290
+      nfiles: 1
+  dataset_creation:
+    cmd: python .\Movie_Recomm_System\dvc_pipeline\1_creating_dataset.py
+    deps:
+    - path: .\Movie_Recomm_System\dvc_pipeline\1_creating_dataset.py
+      hash: md5
+      md5: dfcd5ac3c08c0ab20fba4c8d8c3f1c10
+      size: 8330
+    params:
+      params.yaml:
+        dataset.cast_count: 200
+        dataset.crew_count: 200
+        dataset.keyword_count: 100
+        dataset.prod_comp_count: 50
+        dataset.prod_country_count: 50
+    outs:
+    - path: .\data\processed\
+      hash: md5
+      md5: 36189d3b820cc977ef3f06757fe2fc90.dir
+      size: 340474963
+      nfiles: 4
+  model:
+    cmd: python .\Movie_Recomm_System\dvc_pipeline\2_model.py
+    deps:
+    - path: .\Movie_Recomm_System\dvc_pipeline\2_model.py
+      hash: md5
+      md5: 082b8922a1ab73cca0fdcec07984f6d0
+      size: 2436
+    params:
+      params.yaml:
+        model.gen_report: true
+    outs:
+    - path: .\models\
+      hash: md5
+      md5: 3e383744c290ee379613044590df67aa.dir
+      size: 2084187
+      nfiles: 4
