@@ -3,6 +3,8 @@
 
 A powerful and interactive **content-based movie recommender system** that suggests movies based on three distinct perspectives: **story**, **cast & crew**, and **scale**. Built with Python and Streamlit using the **TMDb 5000 Movie Dataset**, the system also includes an interactive data analysis dashboard.
 
+[Live demo](https://movie-recommendation-sytem-lmtmej7gbqccfnhxf2rtqm.streamlit.app/)
+
 ---
 
 ## 🚀 Features
@@ -55,7 +57,7 @@ A powerful and interactive **content-based movie recommender system** that sugge
    cd movie-recommendation-system
    ```
 
-**Read docs for detailed setup here(https://github.com/pankaj-2708/Movie-Recommendation-Sytem/blob/main/docs/docs/getting-started.md)**
+**[Read docs for detailed setup here](https://github.com/pankaj-2708/Movie-Recommendation-Sytem/blob/main/docs/docs/getting-started.md)**
 ---
 
 
@@ -76,40 +78,48 @@ A powerful and interactive **content-based movie recommender system** that sugge
 ## Project Organization
 
 ```
-├── LICENSE            <- Open-source license if one is chosen
-├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
-│
-├── docs               <- A default mkdocs project; see www.mkdocs.org for details
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── pyproject.toml     <- Project configuration file with package metadata for 
-│                         Movie_Recomm_System and configuration for tools like black
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-│
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.cfg          <- Configuration file for flake8
-│
-└── Movie_Recomm_System   <- Source code for use in this project.
-    ├── backend
-    │   └── main.py         <- FastAPI backend implementation
-    └── frontend
-        ├── app.py         <- Streamlit app interface
-        └── utilityfn.py   <- Utility functions for app.py
+├── .dvc
+    └── .gitignore
+├── .env
+├── .gitattributes
+├── .gitignore
+├── Dockerfile
+├── Makefile
+├── Movie_Recomm_System
+    ├── Frontend
+    │   ├── __pycache__
+    │   ├── app.py
+    │   ├── deps
+    │   │   ├── Frontend.csv
+    │   │   ├── backend.csv
+    │   │   ├── cast.pkl
+    │   │   ├── scale.pkl
+    │   │   ├── story.pkl
+    │   │   └── top_dict.json
+    │   ├── eda_utility.py
+    │   └── prediction_utility.py
+    └── dvc_pipeline
+    │   ├── 0_cleaning.py
+    │   ├── 1_creating_dataset.py
+    │   └── 2_model.py
+├── README.md
+├── docs
+    ├── .gitkeep
+    └── docs
+    │   ├── getting-started.md
+    │   └── index.md
+├── dvc.lock
+├── dvc.yaml
+├── notebooks
+    ├── .gitkeep
+    ├── 0_cleaning.ipynb
+    ├── 1_creating_datasets.ipynb
+    └── 2_model.ipynb
+├── params.yaml
+├── pyproject.toml
+├── references
+    └── .gitkeep
+└── requirements.txt
 ```
 
 --------
